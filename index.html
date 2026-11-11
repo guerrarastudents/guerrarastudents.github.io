@@ -6,13 +6,16 @@
 <title>مؤسسة الطلبة الجامعيين القراريين</title>
 <meta name="description" content="منصة مؤسسة الطلبة الجامعيين القراريين">
 <meta name="theme-color" content="#2D2D99">
+<link rel="preconnect" href="https://script.google.com">
+<link rel="preconnect" href="https://script.googleusercontent.com" crossorigin>
+<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" href="icons/favicon-32.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="القراريون">
+<meta name="apple-mobile-web-app-title" content="مؤسسة الطلبة الجامعيين القراريين">
 <style>
 @font-face{font-family:'Expo Arabic';src:url('https://raw.githubusercontent.com/islamzab47-commits/qarari-assets/main/Expo%20Arabic%20Bold.ttf') format('truetype');font-weight:700;font-display:swap}
 @font-face{font-family:'Expo Arabic';src:url('https://raw.githubusercontent.com/islamzab47-commits/qarari-assets/main/ExpoArabic-Medium.ttf') format('truetype');font-weight:500;font-display:swap}
@@ -31,6 +34,15 @@ html,body{height:100%;background:var(--b);overflow:hidden;font-family:'Expo Arab
 .bar{width:120px;height:4px;border-radius:9px;background:rgba(255,255,255,.18);overflow:hidden;margin-top:6px}
 .bar i{display:block;width:40%;height:100%;border-radius:9px;background:var(--g);animation:slide 1.1s ease-in-out infinite}
 #splash.hide{opacity:0;pointer-events:none}
+#splash .qld img{width:86px;height:86px;animation:none}
+.qld{position:relative;width:150px;height:150px;flex-shrink:0}
+.qld img{position:absolute;inset:32px;width:86px;height:86px;object-fit:contain;filter:none}
+.qld-ring{position:absolute;inset:0;width:100%;height:100%;animation:qldSpin 1.3s linear infinite}
+.qld-tr{fill:none;stroke:rgba(255,255,255,.14);stroke-width:5}
+.qld-ar{fill:none;stroke:#e2b062;stroke-width:5;stroke-linecap:round;stroke-dasharray:80 260;animation:qldDash 1.8s ease-in-out infinite}
+@keyframes qldSpin{to{transform:rotate(360deg)}}
+@keyframes qldDash{0%{stroke-dasharray:20 320}50%{stroke-dasharray:150 190}100%{stroke-dasharray:20 320}}
+
 @keyframes pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
 @keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @keyframes slide{0%{transform:translateX(150%)}100%{transform:translateX(-250%)}}
@@ -48,16 +60,26 @@ html,body{height:100%;background:var(--b);overflow:hidden;font-family:'Expo Arab
 #install .x{border:0;background:#eef0fb;color:#6b7090;width:30px;height:30px;border-radius:50%;font:inherit;font-size:1rem;cursor:pointer;flex-shrink:0}
 #install .go{padding:8px 14px;font-size:.84rem}
 .ios-share{display:inline-block;vertical-align:-4px;color:#2f80ed}
+#guide{position:fixed;inset:0;z-index:7;display:none}#guide.show{display:block}
+#guide .dim{position:absolute;inset:0;background:rgba(20,25,80,.45);animation:fade .25s both}
+#guide .sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;color:#1d2264;border-radius:26px 26px 0 0;padding:16px 18px calc(22px + env(safe-area-inset-bottom));box-shadow:0 -10px 40px rgba(0,0,0,.2);animation:rise .35s cubic-bezier(.2,.9,.3,1) both;max-width:560px;margin:0 auto}
+@keyframes fade{from{opacity:0}}@keyframes rise{from{transform:translateY(100%)}}
+.grab{width:44px;height:5px;border-radius:9px;background:#dde0ee;margin:0 auto 14px}
+.gh{display:flex;gap:12px;align-items:center;margin-bottom:6px}.gh img{width:58px;height:58px;border-radius:16px;background:var(--b);padding:9px;box-shadow:0 8px 18px rgba(45,45,153,.35)}
+.gh b{font-size:1rem;display:block}.gh small{font-size:.78rem;color:#6b7090}
+.st{display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px dashed #e3e6f2;font-size:.87rem;line-height:1.7}.st:last-of-type{border:0}
+.st .n{width:28px;height:28px;border-radius:50%;background:var(--b);color:#fff;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chip{display:inline-flex;align-items:center;gap:5px;background:#f0f1f9;border-radius:8px;padding:2px 8px;font-weight:700;color:var(--b);font-size:.8rem;vertical-align:middle}
+.wide{width:100%;margin-top:10px;background:linear-gradient(135deg,#3a5af0,#2D2D99)}.later{display:block;width:100%;text-align:center;font:inherit;font-size:.82rem;color:#6b7090;background:none;border:0;margin-top:10px;cursor:pointer}
 </style>
 </head>
 <body>
 <iframe id="app" title="مؤسسة الطلبة الجامعيين القراريين" allow="clipboard-write; clipboard-read; web-share; camera; geolocation; fullscreen"></iframe>
 
 <div id="splash">
-  <img src="icons/logo-white.png" alt="">
+<div class="qld"><svg class="qld-ring" viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="qld-tr"/><circle cx="60" cy="60" r="54" class="qld-ar"/></svg><img src="icons/logo-white.png" alt=""></div>
   <h1>مؤسسة الطلبة الجامعيين القراريين</h1>
   <p>نُعدّ لك منصتك…</p>
-  <div class="bar"><i></i></div>
 </div>
 
 <div id="offline">
@@ -74,11 +96,18 @@ html,body{height:100%;background:var(--b);overflow:hidden;font-family:'Expo Arab
   <button class="x" aria-label="إغلاق" onclick="closeInstall()">&times;</button>
 </div>
 
+<div id="guide"><div class="dim" onclick="closeGuide()"></div><div class="sheet"><div class="grab"></div>
+  <div class="gh"><img src="icons/logo-white.png" alt=""><div><b>ثبّت التطبيق على هاتفك</b><small id="gOs"></small></div></div>
+  <div id="gSteps"></div>
+  <button class="btn wide" id="gMain" onclick="guideMain()">فهمت</button>
+  <button class="later" onclick="closeGuide(true)">لاحقًا</button>
+</div></div>
+
 <script>
 // رابط المنصة (Apps Script). ?role=company لمنصة الشركات، ?role=admin لمنصة الإدارة
 var PLATFORM = 'https://script.google.com/macros/s/AKfycbzPSZai55S7ZjqBeUuLO-2NnC33a4byiXXP5oBncxUkIU9pgmSoCuuwSe1iYhbMagi4zw/exec';
 var q = new URLSearchParams(location.search), pass = new URLSearchParams();
-['role', 'p', 'page', 'verify', 'medal', 't', 'eval', 'stats', 'token'].forEach(function (k) { if (q.get(k)) pass.set(k, q.get(k)); });
+['role', 'p', 'page', 'verify', 'medal', 't', 'eval', 'stats', 'token', 'unsub'].forEach(function (k) { if (q.get(k)) pass.set(k, q.get(k)); });
 var src = PLATFORM + (pass.toString() ? '?' + pass.toString() : '');
 var frame = document.getElementById('app'), splash = document.getElementById('splash'), off = document.getElementById('offline'), loaded = false;
 
@@ -96,27 +125,61 @@ window.addEventListener('online', function () { if (!loaded) start(); else off.c
 window.addEventListener('offline', function () { off.classList.add('show'); });
 start();
 
-// ── التثبيت ──
+// ── التثبيت: شريط صغير يفتح نافذة الخطوات (أندرويد وآيفون) ──
 var standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
-var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-var deferred = null, box = document.getElementById('install');
+var UA = navigator.userAgent || '';
+var isIOS = /iphone|ipad|ipod/i.test(UA) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+var isAndroid = /android/i.test(UA);
+var inApp = /FBAN|FBAV|Instagram|WhatsApp|Line\/|Snapchat|TikTok/i.test(UA);
+var deferred = null, box = document.getElementById('install'), guide = document.getElementById('guide');
+var IC = {
+  dots: '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>',
+  share: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 11v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8"/></svg>',
+  plus: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></svg>'
+};
 function snoozed() { try { return Date.now() < Number(localStorage.getItem('qi_snooze') || 0); } catch (e) { return false; } }
-function closeInstall() { box.classList.remove('show'); try { localStorage.setItem('qi_snooze', String(Date.now() + 5 * 864e5)); } catch (e) {} }
-function showInstall(html, btn) {
-  if (standalone || snoozed()) return;
-  document.getElementById('installText').innerHTML = html;
-  document.getElementById('installGo').style.display = btn ? '' : 'none';
+function snooze() { try { localStorage.setItem('qi_snooze', String(Date.now() + 5 * 864e5)); } catch (e) {} }
+function closeInstall() { box.classList.remove('show'); snooze(); }
+function steps(L) { return L.map(function (t, i) { return '<div class="st"><span class="n">' + (i + 1) + '</span><span>' + t + '</span></div>'; }).join(''); }
+function openGuide() {
+  box.classList.remove('show');
+  var os = '', L = [], main = 'فهمت';
+  if (isIOS) {
+    os = 'آيفون · Safari · أقل من دقيقة';
+    L = ['افتح الرابط في <b>Safari</b> (ليس داخل واتساب أو إنستغرام)', 'اضغط زر المشاركة <span class="chip">' + IC.share + '</span> أسفل الشاشة',
+         'اختر <span class="chip">' + IC.plus + ' إضافة إلى الشاشة الرئيسية</span>', 'اضغط «إضافة» أعلى الشاشة، وتجد الأيقونة بين تطبيقاتك'];
+  } else {
+    os = 'أندرويد · Chrome · أقل من دقيقة';
+    L = (deferred ? ['اضغط <span class="chip">تثبيت الآن</span> بالأسفل، ثم «تثبيت»'] : []).concat(
+      [(deferred ? 'إن لم يظهر شيء: ' : '') + 'افتح الرابط في <b>Chrome</b> (ليس داخل واتساب أو إنستغرام)',
+       'افتح قائمة Chrome <span class="chip">' + IC.dots + '</span> أعلى الشاشة',
+       'اختر <span class="chip">تثبيت التطبيق</span> أو «إضافة إلى الشاشة الرئيسية»', 'تجد أيقونة المؤسسة بين تطبيقاتك']);
+    if (deferred) main = 'تثبيت الآن';
+  }
+  if (inApp) L.unshift('<b>أنت داخل تطبيق آخر الآن.</b> انسخ الرابط وافتحه في ' + (isIOS ? 'Safari' : 'Chrome'));
+  document.getElementById('gOs').textContent = os;
+  document.getElementById('gSteps').innerHTML = steps(L);
+  document.getElementById('gMain').textContent = main;
+  guide.classList.add('show');
+}
+function closeGuide(later) { guide.classList.remove('show'); if (later) snooze(); }
+function guideMain() {
+  if (deferred) { deferred.prompt(); deferred.userChoice.then(function () { deferred = null; closeGuide(); }); }
+  else closeGuide();
+}
+function showBar() {
+  if (standalone || snoozed() || !(isIOS || isAndroid)) return;
+  document.getElementById('installText').innerHTML = '<b>ثبّت تطبيق المؤسسة</b>افتح منصتك بلمسة من شاشة هاتفك';
+  var go = document.getElementById('installGo'); go.style.display = ''; go.textContent = 'كيف؟';
   setTimeout(function () { box.classList.add('show'); }, 4000);
 }
+function doInstall() { openGuide(); }
 window.addEventListener('beforeinstallprompt', function (e) {
   e.preventDefault(); deferred = e;
-  showInstall('<b>ثبّت تطبيق القراريون</b>افتح منصتك بلمسة من شاشة هاتفك', true);
+  var go = document.getElementById('installGo'); if (go) go.textContent = 'تثبيت';
 });
-function doInstall() { if (!deferred) return; deferred.prompt(); deferred.userChoice.then(function () { deferred = null; box.classList.remove('show'); }); }
-if (isIOS && !standalone) {
-  var share = '<svg class="ios-share" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 11v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8"/></svg>';
-  showInstall('<b>ثبّت تطبيق القراريون</b>اضغط ' + share + ' «مشاركة» في Safari، ثم «إضافة إلى الشاشة الرئيسية»', false);
-}
+window.addEventListener('appinstalled', function () { box.classList.remove('show'); closeGuide(); });
+showBar();
 if ('serviceWorker' in navigator) window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
 </script>
 </body>
